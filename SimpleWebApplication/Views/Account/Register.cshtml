@@ -1,0 +1,9 @@
+﻿@model SimpleWebApplication.Models.Account
+
+<form asp-action="Register" method="post">
+    <label>Username</label>
+    <input asp-for="Username" required />
+    <label>Password</label>
+    <input asp-for="Password" type="password" required />
+    <button type="submit">Register</button>
+</form>

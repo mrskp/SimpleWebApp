@@ -1,0 +1,10 @@
+﻿@model SimpleWebApplication.Models.LoginViewModel
+
+<form asp-action="Login" method="post">
+    <label>Username</label>
+    <input asp-for="Username" required />
+    <label>Password</label>
+    <input asp-for="Password" type="password" required />
+    <button type="submit">Login</button>
+    <a asp-action="Register">Register</a>
+</form>

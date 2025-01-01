@@ -1,0 +1,10 @@
+﻿@model SimpleWebApplication.Models.Account
+
+<h2>Welcome @Model.Username</h2>
+<p>Account Number: @Model.AccountNumber</p>
+<p>Dynamics Credits: @Model.DynamicsCredits</p>
+
+<form asp-action="AddCredit" method="post">
+    <button type="submit">Add Dynamics Credit</button>
+</form>
+<a asp-action="Logout">Logout</a>

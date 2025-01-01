@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using SimpleWebApplication.Data;
+
 namespace SimpleWebApplication
 {
     public class Program
@@ -8,6 +11,17 @@ namespace SimpleWebApplication
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // For Entity Framework with MySql
+            var connString = builder.Configuration.GetConnectionString("SimpleWebAppDb");
+            builder.Services.AddDbContextPool<AppDbContext>(options =>
+                options.UseMySql(connString, ServerVersion.AutoDetect(connString), sqlOptions =>
+                {
+                    // EnableStringComparisonTranslations
+                    sqlOptions.EnableStringComparisonTranslations();
+                }));
+
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -25,6 +39,8 @@ namespace SimpleWebApplication
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",
